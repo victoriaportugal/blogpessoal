@@ -58,11 +58,14 @@ public class PostagemController {
 				.map(resposta -> ResponseEntity.ok(resposta))
 				//.map serve para verificar enquanto nao é nulo
 				//.ok rerifica se a resposta é realizada
+				//PatchVariable: defini que uma variável String é um parâmetro da consulta
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 	@PostMapping
 	public ResponseEntity<Postagem> post(@Valid @RequestBody Postagem postagem){
 		if(temaRepository.existsById(postagem.getTema().getId()))
+			// utilizamos para consultar se um Objeto específico persistido no Banco de dados existe,
+			//retornando true se foi encontrado
 		return ResponseEntity.status(HttpStatus.CREATED)
 				.body(postagemRepository.save(postagem));
 		
@@ -71,6 +74,7 @@ public class PostagemController {
 	@PutMapping 
 	public ResponseEntity <Postagem> put(@Valid @RequestBody Postagem postagem){
 		if(postagemRepository.existsById(postagem.getId())) {
+			//Put: Para fazer uma Requisição de Alteração de recursos
 			
 			if(temaRepository.existsById(postagem.getTema().getId()))
 		return ResponseEntity.status(HttpStatus.OK)

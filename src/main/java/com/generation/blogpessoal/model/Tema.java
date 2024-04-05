@@ -31,12 +31,14 @@ import jakarta.persistence.Table;
 		*Quando tem muita tabela, busca somente oque esta pedindo: Lazy
 	    *Quando as informaçoes que preciso, tem que estar pré definidas: Eager
 	    *O cascade é a forma como as coisas são excluída
-	    *mappedBy: responsavel por criar a chave estrangeria na Postagem
 	    *cascade: forma de atualizar as tabelas
-	    *cascatetype.remove: indica 
+	    *cascatetype.remove: 
+	    *mappedBy: responsavel por criar a chave estrangeria e fazer relacionamento
+	    *Tema: manda no relacionamento temaPostagem  (Tabela independente)
 		*/
 		@JsonIgnoreProperties("tema")
 		private List<Postagem> postagem;
+		//impedir que dados sejam repitidos varias vezes
 
 		public Long getId() {
 			return this.id;

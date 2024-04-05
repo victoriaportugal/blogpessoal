@@ -21,6 +21,11 @@ public class Postagem {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//A Anotação @GeneratedValue indica que a Chave Primária será gerada pelo Banco de dados. 
+	//O parâmetro strategy indica de que forma esta Chave Primária será gerada. 
+	//A Estratégia GenerationType.IDENTITY indica que a Chave Primária será gerada pelo Banco
+	//de dados através da opção auto-incremento (auto-increment) do SQL, que gera uma sequência 
+	//numérica iniciando em 1
 	private Long id;
 	
 	@NotBlank(message = "o atributo Titulo é obrigatorio")
@@ -37,6 +42,10 @@ public class Postagem {
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
 	private Tema tema;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private Usuario usuario;
 
 	public Long getId() {
 		return id;
@@ -78,6 +87,12 @@ public class Postagem {
 		this.tema = tema;
 	}
 
-	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}	
 	
 }
